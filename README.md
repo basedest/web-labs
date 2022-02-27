@@ -1,3 +1,5 @@
 # web-labs
 
-labs for web-tech course in MPEI
+> note: this repository may content russian language.
+
+### Лабораторные работы по курсу "WEB-технологии" часть 2, МЭИ.
