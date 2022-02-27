@@ -1,18 +1,16 @@
 //используем фреймворк Express
 const express = require("express");
 const app = express();
-
 //Используем для отображения ответа с сервера шаблоны EJS
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/views'));
 
+app.get("/", (req, res) => res.render('index'));
+
 //Обработка GET-запроса
-app.get("/", function (request, response) {
-    response.sendFile(__dirname + "/index.html");
-    //обработка параметров GET-запроса
-    let tmp = request.query;
+app.get("/submit", (req, res) => {
+    let tmp = req.query;
     console.log(tmp); 
-    //форматирование вывода
     let data = `
     ФИО: ${tmp.lastName} ${tmp.firstName} ${tmp.middleName} 
     Возраст: ${tmp.age} 
@@ -28,11 +26,7 @@ app.get("/", function (request, response) {
     Планируемый заработок: ${tmp.salary}
     Планирует работать ${tmp.hours} часов 
     `;
+    res.render('submit', {res: data});
+}); 
 
-    //Передаём в рендер-движок полученную строку в качестве параметра,
-    //для того, чтобы он вставил её в ejs-шаблон 
-    //затем этот шаблон отображается на стороне клиента
-    response.render('index', {res: data});
-});
-
-app.listen(3000, ()=>console.log("Сервер запущен..."));
+app.listen(3000, () => console.log("Сервер запущен..."));
