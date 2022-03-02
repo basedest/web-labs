@@ -11,7 +11,7 @@ app.get("/", (req, res) => res.sendFile(path.join(__dirname, 'index.html')));
 app.get("/submit", (req, res) => {
     res.writeHead(200, {'Content-Type': 'text/plain; charset=utf-8'});
     res.end([
-    'ФИО: ' + req.query.lastName + req.query.firstName + req.query.middleName, 
+    `ФИО: ${req.query.lastName} ${req.query.firstName} ${req.query.middleName}`, 
     'Возраст: ' + req.query.age, 
     'Телефон: ' + req.query.phone, 
     'Эл. Почта: ' +  req.query.email, 
